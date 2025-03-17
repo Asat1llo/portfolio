@@ -1,20 +1,21 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import {Header, Footer} from './components/index.jsx'
-import { Home, Movie,Counter } from './pages/index.js'
+import { Header } from './global/Header'
+import { Layout } from './components/layout'
+import { useState } from 'react'
+
+
 
 
 function App() {
 
+  const [color,setColor] = useState(true)
+  console.log(window.name);
+  
+
+
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/movie' element={<Movie/>} />
-      </Routes>
-      <Counter/>
-      <Footer />
+      <Header setColor={setColor} color={color} />
+       <Layout color={color}/>
     </>
   )
 }
