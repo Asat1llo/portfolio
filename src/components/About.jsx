@@ -1,4 +1,4 @@
-import nov from "/src/assets/svg/nov.svg";
+import nov from "../../public/nov.svg";
 
 export const About = ({color}) => {
   return (

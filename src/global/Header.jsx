@@ -38,9 +38,8 @@ export const Header = ({setColor,color}) => {
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-6 text-sm font-semibold">
           {navs.map((item,i) => (
-            <a
-            href={item.link}
-              key={i}
+            <li
+              key={item.id}
               className={`relative cursor-pointer transition-all duration-300 ${active === item.name ? "text-purple-400" : "text-gray-500"} hover:text-purple-400`}
               onClick={() => setActive(item.name)}
             >
@@ -48,7 +47,7 @@ export const Header = ({setColor,color}) => {
               {active === item.name && (
                 <span className="absolute left-1/2 -bottom-1 w-6 h-1 bg-purple-400 transform -translate-x-1/2 transition-all duration-300"></span>
               )}
-            </a>
+            </li>
           ))}
         </ul>
 

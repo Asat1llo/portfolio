@@ -1,6 +1,22 @@
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaTelegram, FaLinkedin } from "react-icons/fa";
 
 export const Hero = ({color}) => {
+
+
+ ;
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "../../public/resume.pdf"; // public ichidagi faylga yo'l
+    link.download = "Asadulloh_Resume.pdf"; // Fayl nomi
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
+
+
+
   return (
 <div className={`relative flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen ${color ? "bg-gradient-to-br from-purple-900 to-black " : "bg-white"} px-6 md:px-16 lg:px-20 overflow-hidden`}>      
       {/* 1. Chap tarafdagi yozuvlar */}
@@ -22,7 +38,7 @@ export const Hero = ({color}) => {
         </div>
 
         {/* Kichik doira (CV tugmasi bilan) */}
-        <div className="absolute top-[35%] left-[-40px] md:left-[-60px] w-[60px] h-[60px] md:w-[90px] md:h-[90px] bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center animate-float">
+        <div onClick={handleDownload} className="absolute top-[35%] left-[-40px] md:left-[-60px] w-[60px] h-[60px] md:w-[90px] md:h-[90px] bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center animate-float cursor-pointer">
           <span className="text-white text-xs md:text-lg font-semibold flex items-center gap-1">
             ⬇ CV
           </span>
@@ -34,9 +50,15 @@ export const Hero = ({color}) => {
 
       {/* 3. O‘ng tomonda joylashgan ijtimoiy tarmoq ikonkalari */}
       <div className="flex flex-row md:flex-col gap-4 md:gap-6 text-white text-2xl md:text-3xl absolute md:right-12 top-auto md:top-1/2 -translate-y-1/2 md:translate-y-0 bottom-6 md:bottom-auto">
+        <a href="https://github.com/Asat1llo">
         <FaGithub className="hover:text-gray-400 cursor-pointer" />
-        <FaInstagram className="hover:text-pink-400 cursor-pointer" />
-        <FaLinkedin className="hover:text-blue-400 cursor-pointer" />
+        </a>
+        <a href="https://t.me/asadu1loh">
+        <FaTelegram className={`${color ? "hover:text-blue-400" : "text-blue-400"}`} />
+        </a>
+        <a href="https://www.linkedin.com/in/asadulloh-iminjonov-b55549294/">
+        <FaLinkedin className={`${color ? "hover:text-blue-400" : "text-blue-400"}`}  />
+        </a>
       </div>
       
     </div>

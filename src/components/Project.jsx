@@ -1,8 +1,8 @@
-import project1 from '../assets/img/project1.png'
-import project2 from '../assets/img/project2.png'
-import project3 from '../assets/img/project3.png'
-import project4 from '../assets/img/project4.png'
-import { NavLink as Link } from 'react-router-dom'
+import project1 from '../../public/project1.png'
+import project2 from '../../public/project2.png'
+import project3 from '../../public/project3.png'
+import project4 from '../../public/project4.png'
+
 
 
 export const Project = ({color}) => {
