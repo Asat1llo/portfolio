@@ -8,18 +8,29 @@ export default {
     extend: {
       animation: {
         'spinn-slow': 'spinn 5s linear infinite',
-        'float': 'float 3s ease-in-out infinite', // ✅ TO‘G‘RI YOZILDI
+        'floatt': 'float 3s ease-in-out infinite',
+        'floatUp':'1s ease-out forwards', 
       },
       keyframes: {
         spinn: {
           from: { transform: 'rotate(0deg)' },
           to: { transform: 'rotate(-360deg)' }, 
         },
-        float: { // ✅ BU YERDA {} ICHIDA OBYEKTLAR BO‘LISHI KERAK
+        float: { 
           '0%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
           '100%': { transform: 'translateY(0)' },
         },
+        floatUp:{
+          '0%': {
+            transform: 'translateY(50px) scale(0.95)',
+            opacity: 0
+          },
+          '100%':{
+            transform: 'translateY(0) scale(1)',
+            opacity: 1
+          }
+        }
       },
     },
   },

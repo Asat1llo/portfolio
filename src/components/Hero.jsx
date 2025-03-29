@@ -1,9 +1,11 @@
 import { FaGithub, FaTelegram, FaLinkedin } from "react-icons/fa";
+import { TbFileCv } from "react-icons/tb";
+
+
+
 
 export const Hero = ({color}) => {
 
-
- ;
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "../../public/resume.pdf"; // public ichidagi faylga yo'l
@@ -12,9 +14,6 @@ export const Hero = ({color}) => {
     link.click();
     document.body.removeChild(link);
   };
-
-
-
 
 
   return (
@@ -38,9 +37,9 @@ export const Hero = ({color}) => {
         </div>
 
         {/* Kichik doira (CV tugmasi bilan) */}
-        <div onClick={handleDownload} className="absolute top-[35%] left-[-40px] md:left-[-60px] w-[60px] h-[60px] md:w-[90px] md:h-[90px] bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center animate-float cursor-pointer">
-          <span className="text-white text-xs md:text-lg font-semibold flex items-center gap-1">
-            ⬇ CV
+        <div onClick={handleDownload} className="absolute top-[35%] left-[-40px] md:left-[-60px] w-[60px] h-[60px] md:w-[90px] md:h-[90px] bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center animate-floatt cursor-pointer">
+          <span className="text-white text-lg md:text-lg font-semibold flex items-center gap-1">
+            <TbFileCv className={`text-4xl ${window.innerWidth === '768px' ? 'text-blue-500' : '' }`}/>
           </span>
         </div>
 
