@@ -4,7 +4,7 @@ import { TbFileCv } from "react-icons/tb";
 
 
 
-export const Hero = ({color}) => {
+export const Hero = ({color,lan,ldata}) => {
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -24,7 +24,7 @@ export const Hero = ({color}) => {
           Iminjonov <br /> Asadulloh
         </h1>
         <p className={`mt-4 md:mt-6 text-base md:text-lg opacity-80 border-l-2  pl-4 ${color ? "text-white border-white ":" text-black border-black"}`}>
-          I'm a full-stack web developer and I work remotely from Bharat
+         {ldata[lan].hero.text}
         </p>
       </div>
 

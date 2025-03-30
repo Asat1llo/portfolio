@@ -2,27 +2,28 @@ import './global.css'
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
 import { Menu, X } from "lucide-react"; // Icons for mobile menu
+import { language } from '../data/localization';
   
-export const Header = ({setColor,color}) => {
+export const Header = ({setColor,color,setLan,lan}) => {
   const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
   const [active, setActive] = useState("HOME"); // Active link state
 
 
   const navs = [{
     id:1,
-    name:"HOME",
+    name:`${language[lan].header.home}`,
     link:'../components/Hero.jsx'
   },{
     id:2,
-    name:"Project",
+    name:`${language[lan].header.project}`,
     link:'../components/Hero.jsx'
   },{
     id:3,
-    name:"About",
+    name:`${language[lan].header.about}`,
     link:'../components/Hero.jsx'
   },{
     id:4,
-    name:"Contact",
+    name:`${language[lan].header.contact}`,
     link:'../components/Hero.jsx'
   }]
 
@@ -40,7 +41,7 @@ export const Header = ({setColor,color}) => {
           {navs.map((item,i) => (
             <li
               key={item.id}
-              className={`relative cursor-pointer transition-all duration-300 ${active === item.name ? "text-purple-400" : "text-gray-500"} hover:text-purple-400`}
+              className={`relative cursor-pointer transition-all duration-300 ${active === item.name ? "text-purple-400" : "text-gray-500"} hover:text-purple-400 uppercase`}
               onClick={() => setActive(item.name)}
             >
               {item.name}
@@ -53,7 +54,7 @@ export const Header = ({setColor,color}) => {
 
         {/* Right Side: Theme Toggle & Contact Button */}
         <div className="hidden md:flex items-center gap-4 pr-4">
-          <span className="text-xs">LIGHT</span>
+          <span className="text-xs uppercase">{language[lan].header.light}</span>
           <Switch
             checked={color}
             onChange={setColor}
@@ -61,11 +62,11 @@ export const Header = ({setColor,color}) => {
           >
             <span className={`inline-block w-4 h-4 transform bg-white rounded-full transition-all duration-300 ${color ? "translate-x-5" : "translate-x-1"}`} />
           </Switch>
-          <span className="text-xs">DARK</span>
+          <span className="text-xs uppercase">{language[lan].header.dark}</span>
 
           {/* Contact Me Button */}
           <button className="bg-black text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-800 transition-all duration-300">
-            Contact Me
+            {language[lan].header.button}
           </button>
         </div>
 
@@ -81,7 +82,7 @@ export const Header = ({setColor,color}) => {
           {navs.map((item,i) => (
             <button
               key={item.id}
-              className={`text-lg ${active === item.name   ? "text-purple-400" : "text-gray-300"} hover:text-purple-400`}
+              className={`text-lg ${active === item.name   ? "text-purple-400" : "text-gray-300"} hover:text-purple-400 uppercase`}
               onClick={() => {
                 setActive(item.name);
                 setMenuOpen(false); // Close menu after selection
@@ -93,7 +94,7 @@ export const Header = ({setColor,color}) => {
 
           {/* Dark Mode & Contact Button */}
           <div className="flex items-center gap-4">
-            <span className="text-xs">LIGHT</span>
+            <span className="text-xs uppercase">{language[lan].header.light}</span>
             <Switch
               checked={color}
               onChange={setColor}
@@ -101,7 +102,7 @@ export const Header = ({setColor,color}) => {
             >
               <span className={`inline-block w-4 h-4 transform bg-white rounded-full transition-all duration-300 ${color ? "translate-x-5" : "translate-x-1"}`} />
             </Switch>
-            <span className="text-xs">DARK</span>
+            <span className="text-xs uppercase">{language[lan].header.dark}</span>
           </div>
 
           <button className="bg-purple-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-purple-500 transition-all duration-300">

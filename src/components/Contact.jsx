@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-export const Contact = ({color}) => {
+export const Contact = ({color,lan,ldata}) => {
   const form = useRef();
   const [isSent, setIsSent] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -47,7 +47,7 @@ export const Contact = ({color}) => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Contact Me
+          {ldata[lan].contact.title}
         </motion.h2>
         <form ref={form} onSubmit={sendEmail} className="space-y-4">
           <motion.div
@@ -55,7 +55,7 @@ export const Contact = ({color}) => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <label className="text-white block mb-1">Name:</label>
+            <label className="text-white block mb-1">{ldata[lan].contact.name}:</label>
             <input
               type="text"
               name="user_name"
@@ -68,7 +68,7 @@ export const Contact = ({color}) => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <label className="text-white block mb-1">Email:</label>
+            <label className="text-white block mb-1">{ldata[lan].contact.email}:</label>
             <input
               type="email"
               name="user_email"
@@ -81,7 +81,7 @@ export const Contact = ({color}) => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <label className="text-white block mb-1">Message:</label>
+            <label className="text-white block mb-1">{ldata[lan].contact.message}:</label>
             <textarea
               name="message"
               rows="4"
@@ -95,7 +95,7 @@ export const Contact = ({color}) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Send Message
+            {ldata[lan].contact.button}
           </motion.button>
         </form>
       </motion.div>

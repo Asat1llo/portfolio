@@ -2,11 +2,11 @@ import {data} from '../data/data'
 
 
 
-export const Project = ({color}) => {
+export const Project = ({color,lan,ldata}) => {
 
   return (
     <div className={`relative ${color ? "bg-gradient-to-br from-[#0b0718] to-[#1a093c] text-white" : "bg-white text-black"} py-24 px-6 overflow-hidden`}>
-      <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-16 tracking-wide">My Projects</h2>
+      <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-16 tracking-wide">{ldata[lan].project.title}</h2>
       
       {/* Responsive Projects Grid */}
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">

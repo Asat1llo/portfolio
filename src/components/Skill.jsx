@@ -1,4 +1,4 @@
-export const Skill = ({color}) => {
+export const Skill = ({color,lan,ldata}) => {
   const skills = [
     { name: "CSS", level: 7 },
     { name: "Bootstrap", level: 6 },
@@ -18,7 +18,7 @@ export const Skill = ({color}) => {
 
       {/* Section Title */}
       <h2 className="text-center text-4xl sm:text-5xl md:text-6xl font-extrabold mb-10 sm:mb-16 tracking-wide">
-        My <span className="text-purple-400">Skills</span>
+        { lan == 'en' ? ldata[lan].skill.title.slice(0,2) : lan == 'ru' ? ldata[lan].skill.title.slice(0,3) : ldata[lan].skill.title.slice(0,6) }<span className="text-purple-400">{lan == 'en' ? ldata[lan].skill.title.slice(2,9) : lan == 'ru' ? ldata[lan].skill.title.slice(3,10) : ldata[lan].skill.title.slice(6,16)}</span>
       </h2>
 
       {/* Skills Grid */}
