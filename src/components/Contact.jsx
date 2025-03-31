@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 export const Contact = ({color,lan,ldata}) => {
+  const constraintsRef = useRef(null)
   const form = useRef();
   const [isSent, setIsSent] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -33,7 +34,7 @@ export const Contact = ({color,lan,ldata}) => {
   };
 
   return (
-    <div className={`flex items-center justify-center min-h-screen ${color ? "bg-gradient-to-br from-purple-900 to-black ":"bg-white"} px-4`}>
+    <motion.div ref={constraintsRef} className={`flex items-center justify-center min-h-screen ${color ? "bg-gradient-to-br from-purple-900 to-black ":"bg-white"} px-4`}>
       <motion.div
         ref={ref}
         className="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-md w-full md:max-w-lg lg:max-w-xl"
@@ -56,7 +57,9 @@ export const Contact = ({color,lan,ldata}) => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <label className="text-white block mb-1">{ldata[lan].contact.name}:</label>
-            <input
+            <motion.input
+              drag
+              dragConstraints={constraintsRef}
               type="text"
               name="user_name"
               className="w-full p-3 rounded-lg bg-gray-700 text-white focus:ring-2 focus:ring-purple-400"
@@ -69,7 +72,9 @@ export const Contact = ({color,lan,ldata}) => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <label className="text-white block mb-1">{ldata[lan].contact.email}:</label>
-            <input
+            <motion.input
+              drag
+              dragConstraints={constraintsRef}
               type="email"
               name="user_email"
               className="w-full p-3 rounded-lg bg-gray-700 text-white focus:ring-2 focus:ring-purple-400"
@@ -82,7 +87,9 @@ export const Contact = ({color,lan,ldata}) => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <label className="text-white block mb-1">{ldata[lan].contact.message}:</label>
-            <textarea
+            <motion.textarea
+              drag
+              dragConstraints={constraintsRef}
               name="message"
               rows="4"
               className="w-full p-3 rounded-lg bg-gray-700 text-white focus:ring-2 focus:ring-purple-400"
@@ -90,6 +97,8 @@ export const Contact = ({color,lan,ldata}) => {
             />
           </motion.div>
           <motion.button
+            drag
+            dragConstraints={constraintsRef}
             type="submit"
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg shadow-lg"
             whileHover={{ scale: 1.1 }}
@@ -113,6 +122,6 @@ export const Contact = ({color,lan,ldata}) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };

@@ -1,4 +1,13 @@
+import { motion } from "framer-motion";
+import {useRef } from "react";
+
+
+
 export const Skill = ({color,lan,ldata}) => {
+
+   const constraintsRef = useRef(null)
+  
+
   const skills = [
     { name: "CSS", level: 7 },
     { name: "Bootstrap", level: 6 },
@@ -11,7 +20,7 @@ export const Skill = ({color,lan,ldata}) => {
 
  
   return (
-    <div className={`relative ${color ? " bg-gradient-to-br from-[#0b0718] to-[#1a093c] text-white" : "bg-white"} py-24 px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 overflow-hidden`}>
+    <motion.div ref={constraintsRef} className={`relative ${color ? " bg-gradient-to-br from-[#0b0718] to-[#1a093c] text-white" : "bg-white"} py-24 px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 overflow-hidden`}>
       {/* Glowing Background Effects */}
       <div className="absolute top-10 left-10 sm:left-20 w-20 sm:w-40 h-20 sm:h-40 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-10 right-10 sm:right-20 w-30 sm:w-60 h-30 sm:h-60 bg-blue-500/20 rounded-full blur-3xl animate-ping"></div>
@@ -24,7 +33,7 @@ export const Skill = ({color,lan,ldata}) => {
       {/* Skills Grid */}
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10">
         {skills.map((skill, index) => (
-          <div
+          <motion.div drag dragConstraints={constraintsRef}
             key={index}
             className="relative bg-white/10 backdrop-blur-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-lg transform transition-all duration-700 ease-out hover:scale-105 hover:rotate-1 hover:shadow-purple-500/50 skill-card"
           >
@@ -40,41 +49,9 @@ export const Skill = ({color,lan,ldata}) => {
                 ></div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-
-      {/* Custom Animation */}
-      <style jsx>{`
-        @keyframes floatUp {
-          0% {
-            transform: translateY(50px) scale(0.95);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-          }
-        }
-        .skill-card {
-          animation: floatUp 1s ease-out forwards;
-        }
-        .progress-bar {
-          background-size: 200% 100%;
-          animation: progressGlow 1.5s ease-in-out infinite;
-        }
-        @keyframes progressGlow {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}</style>
-    </div>
+    </motion.div>
   );
 };

@@ -1,10 +1,17 @@
 import { FaGithub, FaTelegram, FaLinkedin } from "react-icons/fa";
 import { TbFileCv } from "react-icons/tb";
+import { motion } from "framer-motion";
+import { useState,useRef } from "react";
 
 
 
 
 export const Hero = ({color,lan,ldata}) => {
+
+  const [lockDirection, setLockDirection] = useState(null);
+  const [isDragging, setIsDragging] = useState(false); 
+  const constraintsRef = useRef(null)
+
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -15,14 +22,24 @@ export const Hero = ({color,lan,ldata}) => {
     document.body.removeChild(link);
   };
 
+  
+  
+
 
   return (
-<div className={`relative flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen ${color ? "bg-gradient-to-br from-purple-900 to-black " : "bg-white"} px-6 md:px-16 lg:px-20 overflow-hidden`}>      
+<motion.div ref={constraintsRef}  className={`relative flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen ${color ? "bg-gradient-to-br from-purple-900 to-black " : "bg-white"} px-6 md:px-16 lg:px-20 overflow-hidden`}>      
       {/* 1. Chap tarafdagi yozuvlar */}
       <div className="text-white max-w-lg text-center md:text-left flex flex-col justify-center md:h-screen">
-        <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-tight ${color ? "text-white ":" text-black"}`}>
+        <motion.div 
+        drag  dragDirectionLock
+        onDirectionLock={(axis) => setLockDirection(axis)}
+        dragConstraints={{ left:-50, right: 150, top: -150, bottom: 150 }} // X va Y bo‘yicha cheklovlar
+        onDragStart={() => setIsDragging(true)} // Drag boshlanganda
+        onDragEnd={() => setIsDragging(false)} // Drag tugaganda
+        animate={isDragging ? {} : { x: 0, y: 0 }} 
+        className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-tight ${color ? "text-white ":" text-black"}`}>
           Iminjonov <br /> Asadulloh
-        </h1>
+        </motion.div>
         <p className={`mt-4 md:mt-6 text-base md:text-lg opacity-80 border-l-2  pl-4 ${color ? "text-white border-white ":" text-black border-black"}`}>
          {ldata[lan].hero.text}
         </p>
@@ -44,7 +61,8 @@ export const Hero = ({color,lan,ldata}) => {
         </div>
 
         {/* Ikkinchi kichik doira */}
-        <div className="absolute top-[10%] right-[-30px] md:right-[-50px] w-[50px] h-[50px] md:w-[70px] md:h-[70px] bg-gradient-to-br from-blue-400 to-pink-500 rounded-full"></div>
+        <motion.div drag dragConstraints={constraintsRef}
+      className="absolute top-[10%] right-[-30px] md:right-[-50px] w-[50px] h-[50px] md:w-[70px] md:h-[70px] bg-gradient-to-br from-blue-400 to-pink-500 rounded-full z-50"></motion.div>
       </div>
 
       {/* 3. O‘ng tomonda joylashgan ijtimoiy tarmoq ikonkalari */}
@@ -60,6 +78,6 @@ export const Hero = ({color,lan,ldata}) => {
         </a>
       </div>
       
-    </div>
+    </motion.div>
   );
 };

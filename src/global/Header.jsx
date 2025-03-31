@@ -51,9 +51,6 @@ export const Header = ({setColor,color,setLan,lan}) => {
               onClick={() => setActive(item.name)}
             >
               {item.name}
-              {active === item.name && (
-                <span className="absolute left-1/2 -bottom-1 w-6 h-1 bg-purple-400 transform -translate-x-1/2 transition-all duration-300"></span>
-              )}
             </li>
           ))}
         </ul>

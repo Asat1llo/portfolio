@@ -6,6 +6,7 @@ import { Project } from './Project';
 import { Contact } from './Contact';
 
 export const Layout = ({color,lan,ldata}) => {
+
   return (
     <div>
      <Hero    color={color} lan={lan} ldata={ldata}/>

@@ -8,7 +8,7 @@ import {language} from './data/localization'
 function App() {
 
   const [color,setColor] = useState(true)
-  const [lan,setLan] = useState('uz') 
+  const [lan,setLan] = useState('en') 
   
   
 
