@@ -15,8 +15,9 @@
 
 
 body {
-    font-family: sans-serif;
-  }
+  @apply transition-colors duration-500 ease-in-out;
+  font-family: sans-serif;
+}
   
   ul {
     list-style-type: none;

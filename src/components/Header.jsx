@@ -4,6 +4,8 @@ import { Switch } from "@headlessui/react";
 import { Menu, X } from "lucide-react"; // Icons for mobile menu
 import { language } from '../data/localization';
 import { Select, Space } from 'antd';
+import {ColorButton,ContactButton} from '../global'
+
   
 export const Header = ({setColor,color,setLan,lan}) => {
   const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
@@ -70,30 +72,14 @@ export const Header = ({setColor,color,setLan,lan}) => {
     />
         </Space>
 
-        {/* Right Side: Theme Toggle & Contact Button */}
-        <div className="hidden md:flex items-center gap-4 pr-4">
-          <span className="text-xs uppercase">{language[lan].header.light}</span>
-          <Switch
-            checked={color}
-            onChange={setColor}
-            className="relative inline-flex items-center h-5 w-10 rounded-full bg-gray-600 transition-all duration-300"
-          >
-            <span className={`inline-block w-4 h-4 transform bg-white rounded-full transition-all duration-300 ${color ? "translate-x-5" : "translate-x-1"}`} />
-          </Switch>
-          <span className="text-xs uppercase">{language[lan].header.dark}</span>
-
-          {/* Contact Me Button */}
-          <button className="bg-black text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-800 transition-all duration-300">
-            {language[lan].header.button}
-          </button>
+            
+        <div className='hidden md:flex items-center gap-4 pr-4'>
+         {/* Right Side: Theme Toggle & Contact Button */}
+          <ColorButton setColor={setColor} color={color} lan={lan}/>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden focus:outline-none pr-4">
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          {/* Contact Me Button */}
+          <ContactButton lan={lan} setMenuOpen={setMenuOpen} menuOpen={menuOpen}/>      
       </div>
-
       {/* Mobile Menu */}
       {menuOpen && (
         <div className={`md:hidden flex flex-col items-center gap-4 bg-transparent ${ color ? "text-white":"text-black"} py-6`}>
@@ -137,10 +123,8 @@ export const Header = ({setColor,color,setLan,lan}) => {
             </Switch>
             <span className="text-xs uppercase">{language[lan].header.dark}</span>
           </div>
-
-          <button className="bg-purple-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-purple-500 transition-all duration-300">
-            Contact Me
-          </button>
+         
+          <ContactButton lan={lan}/>    
         </div>
       )}
     </nav>
